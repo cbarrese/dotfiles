@@ -1,5 +1,5 @@
 [core]
-    excludesfile = /Users/youruser/.gitignore_global
+    excludesfile = ~/.gitignore
 [push]
     default = simple
 [color]
