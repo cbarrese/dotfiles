@@ -1,3 +1,8 @@
+[user]
+    name = Chris Barrese
+    email = chris.barrese@ibotta.com
+[global]
+    name = Chris Barrese
 [core]
     excludesfile = ~/.gitignore
 [push]
