@@ -1,0 +1,30 @@
+[core]
+    excludesfile = /Users/youruser/.gitignore_global
+[push]
+    default = simple
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[alias]
+  co = checkout
+  st = status
+  out = outgoing
+  inc = incoming
+  pager = less -F -E -X -m
+  list-branch-tests = "! git diff --diff-filter=ACMRTUXB --name-only develop -- spec test | egrep '_(spec|test).rb' "
+  list-outgoing-tests = "! git diff --diff-filter=ACMRTUXB --name-only `git-tracking-name` -- spec test | egrep '_(spec|test).rb' "
+  list-changed-tests = "! git diff --diff-filter=ACMRTUXB --name-only HEAD -- spec test | egrep '_(spec|test).rb' "
+  lol = log --pretty=oneline --abbrev-commit --graph --decorate
+  rms = "!f(){ git rm --cached \"$1\";rm -r \"$1\";git config -f .gitmodules --remove-section \"submodule.$1\";git config -f .git/config --remove-section \"submodule.$1\";git add .gitmodules; }; f"
+  inc = !(git fetch --quiet && git log --pretty=oneline --abbrev-commit --graph ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u}))
+
+[merge]
+   tool = rubymine
+[mergetool "rubymine"]
+   cmd = mine merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+   trustExitCode = true
+[diff]
+   tool = rubymine
+[difftool "rubymine"]
+   cmd = mine diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
