@@ -29,7 +29,13 @@
 [mergetool "rubymine"]
    cmd = mine merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
    trustExitCode = true
+[mergetool "kdiff3"]
+    path = kdiff3
+    trustExitCode = false
 [diff]
    tool = rubymine
 [difftool "rubymine"]
    cmd = mine diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[difftool "kdiff3"]
+   path = kdiff3
+   trustExitCode = false
