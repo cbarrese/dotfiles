@@ -25,11 +25,8 @@ brew upgrade --all
 # Install the Homebrew packages I use on a day-to-day basis.
 #
 # - Languages: rvm (Ruby), nvm (Node.js), go
-# - Databases: Progres, MySQL, Redis, Mongo, Elasticsearch
-# - Servers: Apache, Nginx
 # - Fuck (https://github.com/nvbn/thefuck): Correct your previous command. Note
 #   that this needs to be added to zsh or bash. See the project README.
-# - Foreman & Forego:
 # - Tree (http://mama.indstate.edu/users/ice/tree/): A directory listing utility
 #   that produces a depth indented listing of files.
 # - Tor ():
@@ -44,16 +41,14 @@ brew upgrade --all
 # which version I'm using.
 
 apps=(
-    rvm
+    rbenv
     nvm
-    mongodb
     bash-completion2
     coreutils
     moreutils
     findutils
     ffmpeg
     fortune
-    ponysay
     git
     git-extras
     hub
