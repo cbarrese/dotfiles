@@ -22,6 +22,11 @@ brew update
 # Upgrade any already-installed formulae
 brew upgrade --all
 
+# Download Brewfile if it doesn't exist
+if [ ! -f Brewfile ]; then
+  curl -o https://raw.githubusercontent.com/cbarrese/dotfiles/master/install/Brewfile
+fi
+
 # Install Brewfile dependencies
 brew bundle
 
