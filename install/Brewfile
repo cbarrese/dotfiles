@@ -33,6 +33,7 @@ brew "wifi-password"
 
 cask "1password"
 cask "dash"
+cask "docker-edge"
 cask "evernote"
 cask "firefox"
 cask "flux"
