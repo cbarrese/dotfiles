@@ -8,7 +8,7 @@ brew tap caskroom/versions
 # Install packages
 apps=(
     1password
-    google-drive
+    google-drive-file-stream
     spectacle
     flux
     dash
