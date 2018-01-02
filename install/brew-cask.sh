@@ -16,9 +16,7 @@ apps=(
     iterm2
     intellij-idea
     firefox
-    firefoxnightly
     google-chrome
-    google-chrome-canary
     hammerspoon
     macdown
     opera
