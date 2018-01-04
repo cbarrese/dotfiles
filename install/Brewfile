@@ -31,6 +31,7 @@ brew "tree"
 brew "wget"
 brew "wifi-password"
 
+cask "caskroom/versions/java8"
 cask "1password"
 cask "dash"
 cask "docker-edge"
