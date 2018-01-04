@@ -7,3 +7,4 @@ dotfiles:
 		echo ln -sfn $$file $(HOME)/$$f; \
 	done; \
 	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
+	git config --global core.excludesfile ~/.gitignore;
