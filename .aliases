@@ -69,3 +69,48 @@ alias ystart='zsh -c "cd $HYBRIS_HOME_DIR/installer && ./install.sh -r platform_
 alias yunitinit='zsh -c "cd $HYBRIS_HOME_DIR/hybris/bin/platform && ant yunitinit"'
 alias yunit='f() { zsh -c "cd $HYBRIS_HOME_DIR/hybris/bin/platform && ant unittests -Dtestclasses.packages=${${${1:-\*}:s%\.%\\.%}:s%\*%\\*%}" };f'
 alias yint='f() { zsh -c "cd $HYBRIS_HOME_DIR/hybris/bin/platform && ant integrationtests -Dtestclasses.packages=${${${1:-\*}:s%\.%\\.%}:s%\*%\\*%}" };f'
+
+## complex hybris aliases
+function ydatahub-ext-fn() {
+	hybrisDir=$1
+	dataHubExt=$2
+	if [ -z "${hybrisDir}" ] || [ -z "${dataHubExt}" ]; then
+		echo "Usage: ydatahub-ext hybrisDir dataHubExtension"
+		return 1
+	fi
+
+
+	filenameRegexPattern=".*\/\(.*\?\)-\([0-9.]\+\)[-]\?\?.*\.jar"
+	jarFileDir="${hybrisDir}/bin/ext-integration/datahub/extensions/sap"	
+	dataHubDir=$PWD
+	localRepoDir=${dataHubDir}/modules/repository
+	groupId="com.hybris.datahub"
+
+	artifacts=()
+	versions=()
+	for jarFile in ${jarFileDir}/${dataHubExt}*(N); do
+		artifactId=`echo $jarFile | sed 's/'$filenameRegexPattern'/\1/'`
+		version=`echo $jarFile | sed 's/'$filenameRegexPattern'/\2/'`
+		artifacts+=(${artifactId})
+		versions+=(${version})
+
+		mvn install:install-file -Dfile=$jarFile -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackaging=jar -DlocalRepositoryPath=$localRepoDir
+	done
+
+	if [ ${#artifacts[@]} -gt 0 ]; then
+		echo "Add following dependency snippet to your pom.xml files:"
+		for ((i = 1; i <= ${#artifacts[@]}; i++)); do
+			echo "
+				<dependency>
+					<groupId>$groupId</groupId>
+					<artifactId>$artifacts[i]</artifactId>
+					<version>$versions[i]</version>
+				</dependency>
+			"
+		done
+	else
+		echo "No extensions found"
+	fi
+}
+
+alias ydatahub-ext=ydatahub-ext-fn

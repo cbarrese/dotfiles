@@ -20,6 +20,9 @@
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+# direnv
+.envrc
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
