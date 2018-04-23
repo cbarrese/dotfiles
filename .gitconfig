@@ -1,10 +1,10 @@
 [user]
-    name = Chris Barrese
-    email = chris.barrese@gmail.com
+	name = Chris Barrese
+	email = chris.barrese@gmail.com
 [global]
     name = Chris Barrese
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/chris/.gitignore
 [push]
     default = simple
 [color]
@@ -25,17 +25,13 @@
   inc = !(git fetch --quiet && git log --pretty=oneline --abbrev-commit --graph ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u}))
 
 [merge]
-   tool = rubymine
-[mergetool "rubymine"]
-   cmd = mine merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
-   trustExitCode = false
-[mergetool "kdiff3"]
-    path = kdiff3
-    trustExitCode = false
+    tool = intellij
+[mergetool "intellij"]
+    cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    trustExitCode = true
 [diff]
-   tool = rubymine
-[difftool "rubymine"]
-   cmd = mine diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
-[difftool "kdiff3"]
-   path = kdiff3
-   trustExitCode = false
+    tool = intellij
+[difftool "intellij"]
+    cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+
+
