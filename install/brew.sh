@@ -20,7 +20,7 @@ brew tap Goles/battery
 brew update
 
 # Upgrade any already-installed formulae
-brew upgrade --all
+brew upgrade
 
 # Download Brewfile if it doesn't exist
 if [ ! -f Brewfile ]; then

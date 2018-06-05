@@ -2,11 +2,15 @@ all: dotfiles gitconfig
 
 dotfiles:
 	# add aliases for dotfiles
-	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".irssi" -not -name ".gnupg" -not -name ".dotfiles"); do \
+	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".gitconfig" -not -name ".git" -not -name ".*.swp" -not -name ".irssi" -not -name ".gnupg" -not -name ".dotfiles"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
+
+	rm -f $(HOME)/.gitignore; 
+	cp $(CURDIR)/gitignore $(HOME)/.gitignore;
+	rm -f $(HOME)/.gitconfig;
+	cp $(CURDIR)/gitconfig $(HOME)/.gitconfig;
 
 gitconfig:
 	# add git global config

@@ -55,6 +55,7 @@ fabric.properties
 
 # *.iml
 # modules.xml
+.idea
 
 
 ### Eclipse ###
